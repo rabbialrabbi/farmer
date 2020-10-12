@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<list>
+    <item type="base">
+        <demo>3v5j9n.api.infobip.com/sms/1/text/query/username=userName/password=psw/to=mobNo/text=/smsBody/from=/from</demo>
+        <user>mr.consultant</user>
+        <pasw>@VIP12345@vip;:</pasw>
+        <from>8804445654310</from>
+    </item>   
+</list>	
