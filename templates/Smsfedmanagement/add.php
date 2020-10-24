@@ -20,7 +20,7 @@
                     <tr><th>SMSID</th><td><?= $this->Form->input('SMSID',['class'=>'form-control']); ?></td></tr>
                      <tr><th>Feedback Date</th><td><?= $this->Form->input('FedDate',['class'=>'form-control']); ?></td></tr>
                      <tr><th>Feedback SMS</th><td><?= $this->Form->input('FedBackSMS',['class'=>'form-control']); ?></td></tr>
-                </table>               
+                </table>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

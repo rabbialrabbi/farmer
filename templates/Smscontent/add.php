@@ -7,7 +7,7 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-           
+
             <?= $this->Html->link(__('List Advisory content'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <legend></legend>
         </div>
@@ -17,20 +17,21 @@
             <?= $this->Form->create($smscontent) ?>
             <fieldset>
                 <legend><?= __('Add Advisory Content') ?></legend>
-                
+
                 <table class="table table-striped table-condensed table-bordered">
                     <tr>
                         <td class="col-md-1"><?= __('Year') ?></td>
+
                         <td><?= $this->Form->input('CYearNo', ['type' => 'text','value'=>$CYearNo]); ?></td>
-                        
+
                         <td class="col-md-1"><?= __('Month') ?></td>
                         <td><?= $this->Form->input('MonthName', ['type' => 'text','value'=>$MonthName]); ?>
                             <?= $this->Form->input('MonthID', ['type' => 'hidden','value'=>$MonthID]); ?>
                         </td>
-                        
+
                         <td class="col-md-1"><?= __('SL No') ?></td>
                         <td><?= $this->Form->input('SMSSlNo', ['type' => 'text','value'=>$SMSSlNo]); ?> </td>
-                        
+
                         <td class="col-md-1"><?= __('SMS No') ?></td>
                         <td><?= $this->Form->input('SMSNo', ['type' => 'text','value'=>$SMSNo]); ?></td>
                     </tr>
@@ -53,7 +54,7 @@
                         <td><?= __('Heading(Bng)') ?></td>
                         <td colspan="3"><?= $this->Form->input('SMSHeadingBan', ['class' => 'form-control']); ?></td>
                     </tr>
-                    
+
                     <tr>
                         <td><?= __('Advisory Content (Eng)') ?></td>
                         <td colspan="3"><?= $this->Form->textarea('SMSContentBodyEng',  ['class' => 'form-control']); ?></td>

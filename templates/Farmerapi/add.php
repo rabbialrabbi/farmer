@@ -19,45 +19,45 @@
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Region Name</th>
-                        <td><?php echo $this->Form->input('RegionOID', ['type' => 'select', 'options' => $regionlist,
+                        <td><?php echo $this->Form->input('RegionOID', ['type' => 'select',
                 'empty' => '-Select Region-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
+            ?><td>
                     </tr>
                     <tr>
                         <th>Division Name</th>
-                        <td><?php echo $this->Form->input('DivisionOID', ['type' => 'select', 'options' => $divisionlist,
+                        <td><?php echo $this->Form->input('DivisionOID', ['type' => 'select',
                             'empty' => '-Select Division-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
+            ?><td>
                     </tr>
                     <tr>
                         <th>District Name</th>
-                        <td><?php echo $this->Form->input('DistrictOID', ['type' => 'select', 'options' => $districtlist,
+                        <td><?php echo $this->Form->input('DistrictOID', ['type' => 'select',
                             'empty' => '-Select District-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
+            ?><td>
                     </tr>
                     <tr>
                         <th>Upazilla Name</th>
-                        <td><?php echo $this->Form->input('UpazillaOID', ['type' => 'select', 'options' => $upazillalist,
+                        <td><?php echo $this->Form->input('UpazillaOID', ['type' => 'select',
                             'empty' => '-Select Upazilla-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
+            ?><td>
                     </tr>
                     <tr>
                         <th>Union Name</th>
-                        <td><?php echo $this->Form->input('UnionOID', ['type' => 'select', 'options' => $unionlist,
+                        <td><?php echo $this->Form->input('UnionOID', ['type' => 'select',
                             'empty' => '-Select Union-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
-                    </tr>                    
+            ?><td>
+                    </tr>
                     <tr>
                         <th>Project Name</th>
-                        <td><?php echo $this->Form->input('ProjectOID', ['type' => 'select', 'options' => $projectlist,
+                        <td><?php echo $this->Form->input('ProjectOID', ['type' => 'select',
                             'empty' => '-Select Project-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
+            ?><td>
                     </tr>
                     <tr>
                         <th>Group Name</th>
-                        <td><?php echo $this->Form->input('GroupOID', ['type' => 'select', 'options' => $grouplist,
+                        <td><?php echo $this->Form->input('GroupOID', ['type' => 'select',
                             'empty' => '-Select Group-', 'class' => 'form-control', 'templateVars' => ['class' => 'col-md-4']]);
-            ?><td>                            
+            ?><td>
                     </tr>
                     <tr>
                         <th>Farmer Name</th>
@@ -65,13 +65,13 @@
                     </tr>
                     <tr>
                         <th>Address</th>
-                        <td><?php echo $this->Form->input('FarmerAdd', ['class' => 'form-control']); ?><td>                            
+                        <td><?php echo $this->Form->input('FarmerAdd', ['class' => 'form-control']); ?><td>
                     </tr>
                     <tr>
                         <th>Mobile No</th>
-                        <td><?php echo $this->Form->input('FarMob', ['class' => 'form-control']); ?><td>                            
+                        <td><?php echo $this->Form->input('FarMob', ['class' => 'form-control']); ?><td>
                     </tr>
-                </table>                    
+                </table>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

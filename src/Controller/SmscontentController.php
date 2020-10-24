@@ -84,7 +84,7 @@ class SmscontentController extends AppController {
         //$smsdesmgm = $smsdesattachment->find('all', ['contain' => ['codelistdetailA', 'codelistdetailB'],'conditions'=>['OR'=>[['SMSTypeID' => $smstypeid],['SuggestionTypeID' => $suggestiontypeid]]]]);
         $smsdesmgm = $smsdesattachment->find('all', ['contain' => ['codelistdetailA', 'codelistdetailB'], 'conditions' => $newdataquery]);
 //        dd($smsdesmgm);
-//        
+//
 //        //$this->set('smscontentlist', $smsdesmgm);
         return $this->response
                         ->withType('application/json')
@@ -135,6 +135,7 @@ class SmscontentController extends AppController {
         //$this->fillSmsstatusList();
         $this->fillSMSNo();
         $smscontent = $this->Smscontent->newEmptyEntity();
+
         if ($this->request->is('post')) {
 
             $smscontent = $this->Smscontent->patchEntity($smscontent, $this->request->getData());
@@ -150,6 +151,7 @@ class SmscontentController extends AppController {
             }
             $this->Flash->error(__('The SMS Content could not be saved. Please, try again.'));
         }
+
         $this->set(compact('smscontent'));
     }
 

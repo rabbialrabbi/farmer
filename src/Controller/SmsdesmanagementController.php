@@ -30,7 +30,7 @@ class SmsdesmanagementController extends AppController {
         //debug($smsdesmanagement->farmerapi);
         $this->set(compact('smsdesmanagement', 'smscontentList'));
 
-        // $r=$this->fillfarmerlist(3);   
+        // $r=$this->fillfarmerlist(3);
     }
 
     /**
@@ -52,7 +52,7 @@ class SmsdesmanagementController extends AppController {
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    //Here we get the Farmer List 
+    //Here we get the Farmer List
     public function fillfarmerlist($smscontentid) {
 
         $this->autoRender = false;
@@ -80,13 +80,13 @@ class SmsdesmanagementController extends AppController {
             foreach ($smsdesmanagemenlist as $smsdesmanagemen) {
                 $smsdesmanagemen->SendingDate = Time::now();
                 $smsdesmanagemen->status = 'S';
-               
+
 //               //******************Dim For Time Being************************
                 if ($this->getsoftsettings()==1) {  //Message send Status is yes
                     if ($smscon->SMSTypeID==1)  //Text Message
                     {
                         $this->sendBodySMS($smsBody,$farmer->FarMob,$smsno);
-                    }                        
+                    }
                     else {
                       $messageid = $this->sendaudionfile($smsBody,$farmer->FarMob);
                     }
@@ -96,14 +96,14 @@ class SmsdesmanagementController extends AppController {
 //               //break;
 //               //******************Dim For Time Being************************
             }
-           
+
             $smscon->SuggestionTypeID = 5;  //for SMS send Status update
             $smscontent->save($smscon);
 
             $this->Flash->success(__('All SMS Has Been Send'));
         }
-        $this->set(compact('smsdesmanagement', 'smscontentList', 'farmerapilist'));
-    }   
+        $this->set(compact( 'smscontentList', 'farmerapilist'));
+    }
     //Here we get the Software Settings
     private function getsoftsettings(){
          $softwaresettingstab = TableRegistry::get('softsettings');
@@ -122,7 +122,7 @@ class SmsdesmanagementController extends AppController {
     }
     public function sendaudionfile($msgd,$farmb) {
         $curl = curl_init();
-        
+
         $this->autoRender = false;
         $sceid=$this->getscearioid($msgd);
         $sendermobileno="8804445654310";
@@ -135,7 +135,7 @@ class SmsdesmanagementController extends AppController {
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",                                
+            CURLOPT_CUSTOMREQUEST => "POST",
             //CURLOPT_POSTFIELDS => "{\n    \"bulkId\": \"BULK-ID-123-xyz\",\n    \"messages\": [\n        {\n            \"scenarioId\": \"D132FA3B9236AEEE5D32A48F5F4DA77F\",\n            \"from\": \"8804445654310\",\n            \"destinations\": [\n                {\n                    \"to\": \"8801740773262\"\n                },\n                {\n                    \"to\": \"8801838247420\"\n                }\n            ],\n            \"parameters\": {\n                \"foo\": \"bar\"\n            },\n            \"notifyUrl\": \"https://www.example.com/voice/advanced\",\n            \"notifyContentType\": \"application/json\",\n            \"callbackData\": \"DLR callback data\",\n            \"validityPeriod\": 720,\n            \"sendAt\": \"2016-07-07T17:00:00.000+01:00\",\n            \"record\": false,\n            \"retry\": {\n                \"minPeriod\": 1,\n                \"maxPeriod\": 5,\n                \"maxCount\": 5\n            }\n        }\n    ]\n}",
             //CURLOPT_POSTFIELDS => "{\n    \"bulkId\": \"BULK-ID-123-xyz\",\n    \"messages\": [\n        {\n            \"scenarioId\": \"{$sceid}\",\n            \"from\": \"8804445654310\",\n            \"destinations\": [\n                {\n                    \"to\": \"8801740773262\"\n                },\n                {\n                    \"to\": \"8801923121777\"\n                }\n            ],\n            \"parameters\": {\n                \"foo\": \"bar\"\n            },\n            \"notifyUrl\": \"https://www.example.com/voice/advanced\",\n            \"notifyContentType\": \"application/json\",\n            \"callbackData\": \"DLR callback data\",\n            \"validityPeriod\": 720,\n            \"sendAt\": \"2016-07-07T17:00:00.000+01:00\",\n            \"record\": false,\n            \"retry\": {\n                \"minPeriod\": 1,\n                \"maxPeriod\": 5,\n                \"maxCount\": 5\n            }\n        }\n    ]\n}",
             CURLOPT_POSTFIELDS => "{\n    \"bulkId\": \"BULK-ID-123-xyz\",\n    \"messages\": [\n        {\n            \"scenarioId\": \"{$sceid}\",\n            \"from\": \"{$sendermobileno}\",\n            \"destinations\": [\n                {\n                    \"to\": \"{$farmb}\"\n                }\n                            ],\n            \"parameters\": {\n                \"foo\": \"bar\"\n            },\n            \"notifyUrl\": \"http://ownssms.safeit-bd.com?sender=$sendermobileno&receiver=$farmb&cdate=2019-07-27&message=testmessage444444&id=4234234&pairedmessageid=2123123123\",\n            \"notifyContentType\": \"application/json\",\n            \"callbackData\": \"DLR callback data\",\n            \"validityPeriod\": 720,\n            \"sendAt\": \"2016-07-07T17:00:00.000+01:00\",\n            \"record\": false,\n            \"retry\": {\n                \"minPeriod\": 1,\n                \"maxPeriod\": 5,\n                \"maxCount\": 5\n            }\n        }\n    ]\n}",
@@ -145,16 +145,16 @@ class SmsdesmanagementController extends AppController {
                 "Content-Type: application/json"
             ),
         ));
-        
+
         $response = curl_exec($curl);
         //dd($response);
         $err = curl_error($curl);
-        
+
         $arr = json_decode($response, true);
         $msgid=$arr['messages'][0]['messageId'];
-        
+
         curl_close($curl);
-        return $msgid;    
+        return $msgid;
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
@@ -183,7 +183,7 @@ class SmsdesmanagementController extends AppController {
   \"script\": [\n
     {\n
       \"say\": \"{$msgdesc}\",\n
-     \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n 
+     \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n
     }\n,
     {\n
       \"collectInto\": \"scheduleTime\"
@@ -193,27 +193,27 @@ class SmsdesmanagementController extends AppController {
       \"case\": {\n
         \"1\": [\n
           {\n
-            \"say\": \"আপনি ১ চাপ দিয়েছেন ।\",\n           
-            \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n 
+            \"say\": \"আপনি ১ চাপ দিয়েছেন ।\",\n
+            \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n
           }\n
         ]\n,
         \"0\":[\n
           {\n
-            \"say\": \"আপনি ০ চাপ দিয়েছেন।\",\n   
-            \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n 
+            \"say\": \"আপনি ০ চাপ দিয়েছেন।\",\n
+            \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n
           }\n
-        ]\n,      
+        ]\n,
         \"__default\": [\n
           {\n
             \"say\": \"আপনাকে আবার আমরা কৃষির খবর জানানো হবে\",\n
-            \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n             
+            \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n
           }\n,
           \"hangup\"
         ]\n
       }\n
     }\n,
-    {\n \"say\": \"আপনাকে অনেক ধন্যবাদ\",\n    
-    \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n 
+    {\n \"say\": \"আপনাকে অনেক ধন্যবাদ\",\n
+    \"options\": {\n                \"speechRate\": 1,\n                \"language\": \"bn\",\n                \"voice\": {\n                    \"name\": \"Sushmita (beta)\",\n                    \"gender\": \"female\"\n                }\n            }\n
     }\n,
     \"hangup\"
   ]\n
@@ -228,7 +228,7 @@ class SmsdesmanagementController extends AppController {
         $response = curl_exec($curl);
        // dd($response);
         $err = curl_error($curl);
-        
+
         curl_close($curl);
         $arr = json_decode($response, true);
         return $arr['id'];
@@ -267,14 +267,14 @@ class SmsdesmanagementController extends AppController {
         //   $ff=$http->post($f);
         //   print_r($ff);
         // debug($smsSendUrl);
-        // $strUrl = $http->buildUrl($smsSendUrl);                
+        // $strUrl = $http->buildUrl($smsSendUrl);
         $response = $http->get($smsSendUrl);
 
         //  debug($response);
         // $json = $response->getJson();
         // debug($json);
     }
-    
+
     function fillDataSourceCombo() {
 
         $regions = TableRegistry::get('Regions');

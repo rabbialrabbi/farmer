@@ -45,8 +45,8 @@ class FarmerapiController extends AppController {
         // dd($division->find('all')->count());
 //        $sesman=new sessionmgm();
 //        $t=$sesman->getunionbyid(1);
-//        
-//        foreach ($t as $key => $value) {       
+//
+//        foreach ($t as $key => $value) {
 //            debug($value['UnionOID']);
 ////            foreach ($value as $val) {
 ////                dd($val);
@@ -56,12 +56,14 @@ class FarmerapiController extends AppController {
         //$farmerapi = $this->paginate($this->Farmerapi);
 //        $sessmgm=new sessionmgm();
 //        $ttt=$sessmgm->getsetuseringo(null,'r');
-
+//        $this->viewBuilder()->setLayout('master');
+//        dd($this->Auth->identify());
         $farmerapi = $this->Farmerapi->find('All')->limit(20);
         $this->set(compact('farmerapi'));
         $this->fillalllist();
 
         // $this->adminshowgrid();
+//        exit();
     }
 
 //    public function adminshowgrid() {
@@ -125,7 +127,7 @@ class FarmerapiController extends AppController {
 //                $page = $total_pages;
 //            }
 //            $start = $limit * $page - $limit;
-//            // calculate the starting position of the rows        
+//            // calculate the starting position of the rows
 //            // if for some reasons start position is negative set it to 0
 //            // typical case is that the user type 0 for the requested page
 //            if ($start < 0) {
@@ -139,10 +141,10 @@ class FarmerapiController extends AppController {
 //            // $divisiontable->recursive = -1;
 ////        $result = $divisiontable->find('all', array(
 ////            'fields' => array('DivisionOID', 'DivisionName', 'label_en'),
-////            'order' => $sort_range,          
+////            'order' => $sort_range,
 ////            //'limit' => $limit_range
 ////            //'limit' => 10
-////        ));       
+////        ));
 //            $i = 0;
 //            //$f->debug('Halar po'.$result);
 //            $response->page = $page;
@@ -156,9 +158,9 @@ class FarmerapiController extends AppController {
 ////           //  $f->debug('Halar po'.$this->response->rows[$i]);
 ////            $response->rows[$i]['DivisionOID'] = $result->DivisionOID;
 ////            $response->rows[$i]['cell'] = array($result->DivisionOID, $result->DivisionName,$result->label_en);
-////            $i++;           
+////            $i++;
 ////           // $f->debug('Halar po'.strval($i));
-////        }         
+////        }
 //            $f->debug(json_encode($mydata));
 //            //dd($response);
 //            //debug(json_encode($response));
@@ -204,7 +206,7 @@ class FarmerapiController extends AppController {
 //            $page = $total_pages;
 //        }
 //        $start = $limit * $page - $limit;
-//        // calculate the starting position of the rows        
+//        // calculate the starting position of the rows
 //        // if for some reasons start position is negative set it to 0
 //        // typical case is that the user type 0 for the requested page
 //        if ($start < 0) {
@@ -219,7 +221,7 @@ class FarmerapiController extends AppController {
 //            'fields' => array('OID', 'farmer_name', 'phone','district_name','upazila_name','union_name','group_name','project_name'),
 //            'order' => $sort_range,
 //            //'conditions'=>['upa_id'=>140],
-//            // 'limit' => $limit_range            
+//            // 'limit' => $limit_range
 //            'limit' => $limit
 //        ));
 //        $i = 0;
@@ -236,7 +238,7 @@ class FarmerapiController extends AppController {
 //        exit();
 //    }
 //   public function  adminshowgridbackup() {
-//        $f = new Log();              
+//        $f = new Log();
 //        $f->debug('Halar po kukur ');
 //        $this->autoRender = false;
 //        // get how many rows we want to have into the grid - rowNum parameter in the grid
@@ -245,7 +247,7 @@ class FarmerapiController extends AppController {
 //         //$this->Log(print_r($this->request->getQueryParams()));
 //         //$f->debug(print_r($this->request->getData()));
 //        //$limit = $this->params['url']['rows'];
-//        
+//
 //        //$limit = $this->request->getParam(['url']['rows']);
 //        $limit = $this->request->getQuery('rows');
 //        // get index row - i.e. user click to sort. At first time sortname parameter -
@@ -253,15 +255,15 @@ class FarmerapiController extends AppController {
 //        $sidx = $this->request->getQuery('sidx');
 //        // sorting order - at first time sortorder
 //        $sord =$this->request->getQuery('sord');
-//        $page =$this->request->getQuery('page'); 
-//        
+//        $page =$this->request->getQuery('page');
+//
 //        // if we not pass at first time index use the first column for the index or what you want
 //        if (!$sidx){
 //            $sidx = 1;
-//        }            
+//        }
 //        // calculate the number of rows for the query. We need this for paging the result
 //        $row = $this->Farmerapi->find('all')->count();
-//        $count = $row;                      
+//        $count = $row;
 //      //  $f->debug(strval($count));
 //        // calculate the total pages for the query
 //        if ($count > 0) {
@@ -272,15 +274,15 @@ class FarmerapiController extends AppController {
 //        // if for some reasons the requested page is greater than the total
 //        // set the requested page to total page
 //        if ($page > $total_pages){
-//            $page = $total_pages;            
-//        }            
+//            $page = $total_pages;
+//        }
 //        $start = $limit * $page - $limit;
-//        // calculate the starting position of the rows        
+//        // calculate the starting position of the rows
 //        // if for some reasons start position is negative set it to 0
 //        // typical case is that the user type 0 for the requested page
 //        if ($start < 0){
 //            $start = 0;
-//        }            
+//        }
 //        // the actual query for the grid data
 //        $limit_range = $start . "," . $limit;
 //        $sort_range = $sidx . " " . $sord;
@@ -292,7 +294,7 @@ class FarmerapiController extends AppController {
 //            'conditions'=>['upa_id'=>140],
 //            //'limit' => $limit_range
 //            'limit' => 10
-//        ));       
+//        ));
 //        $i = 0;
 //        // $f->debug('Halar po');
 //         $page=1;
@@ -301,7 +303,7 @@ class FarmerapiController extends AppController {
 //        // $response=[];
 //      //  $response->page = $page;
 //       // $response->total = $total_pages;
-//       // $response->records = $count;       
+//       // $response->records = $count;
 //        //$this->log
 //       //$f->debug('halar po'.strval($result->count()));
 //        foreach ($result as $result) {
@@ -310,12 +312,12 @@ class FarmerapiController extends AppController {
 //           //  $f->debug('Halar po'.$this->response->rows[$i]);
 //            $response->rows[$i]['id'] = strval($i);
 //            $response->rows[$i]['cell'] = array(strval($result->OID), strval($result->FarmerID),$result->phone);
-//            $i++;           
+//            $i++;
 //           // $f->debug('Halar po'.strval($i));
-//        }         
+//        }
 //        $response->page = $page;
 //        $response->total = $total_pages;
-//        $response->records = $count;  
+//        $response->records = $count;
 //         //$f->debug(dd($response));
 //        //dd($response);
 //         //$f->debug('Hello '.json_encode($response));
@@ -324,19 +326,19 @@ class FarmerapiController extends AppController {
 ////         return $this->response
 ////                        ->withType('application/json')
 ////                        ->withStringBody(json_encode($response));
-//       
+//
 //       //  $this->set(compact('response'));
 //       // echo json_encode($response);
 //   // $f->debug('Hello There'.json_encode($response));
 ////    $json_data = json_encode($response);
 ////    $response = $this->response->withType('json')->withStringBody($json_data);
-////    
+////
 ////  //  $f->debug();
 ////    return $response;
 ////       // return json_encode($response);
 //    //    $this->RequestHandler->respondAs('json');
-//    //$this->response->getType('application/json');  
-//    //$this->autoRender = false; 
+//    //$this->response->getType('application/json');
+//    //$this->autoRender = false;
 //    echo json_encode($response);
 //        //writing exit() is necessary.
 //      //  exit();
@@ -474,7 +476,7 @@ class FarmerapiController extends AppController {
                 $dis->RegionOID = $districtapi['reg_id'];
                 $this->addRegion($districtapi['reg_id']);
                 $dis->DivisionOID = $districtapi['div_id'];
-                //$this->addDisvision($districtapi['div_id']);                    
+                //$this->addDisvision($districtapi['div_id']);
                 $dis->DistrictName = $districtapi['label_bn'];
                 $dis->pstate = $districtapi['pstate'];
                 $dis->statecode = $districtapi['statecode'];
@@ -749,7 +751,7 @@ class FarmerapiController extends AppController {
         $this->filllist();
         $farmerapi = $this->Farmerapi->newEmptyEntity();
         if ($this->request->is('post')) {
-            // dd($this->request->getAttribute('DistrictOID'));           
+            // dd($this->request->getAttribute('DistrictOID'));
             $farmerapi['dis_id'] = $this->getdisidfromoid($this->request->getData('DistrictOID'), 1);
             $farmerapi['districtoid'] = $this->request->getData('DistrictOID');
             $farmerapi['district_name'] = $this->getdisidfromoid($this->request->getData('DistrictOID'), 2);
@@ -792,13 +794,13 @@ class FarmerapiController extends AppController {
             $this->Flash->error(__('The Farmer could not be saved. Please, try again.'));
         }
         $this->set(compact('farmerapi'));
-        $this->set(compact('regionList'));
-        $this->set(compact('divisionlist'));
-        $this->set(compact('districtlist'));
-        $this->set(compact('upazillalist'));
-        $this->set(compact('unionlist'));
-        $this->set(compact('projectlist'));
-        $this->set(compact('grouplist'));
+//        $this->set(compact('regionList'));
+//        $this->set(compact('divisionlist'));
+//        $this->set(compact('districtlist'));
+//        $this->set(compact('upazillalist'));
+//        $this->set(compact('unionlist'));
+//        $this->set(compact('projectlist'));
+//        $this->set(compact('grouplist'));
     }
 
     /**

@@ -12,10 +12,10 @@
             <thead>
                 <tr>
                     <th><?= __('Farmer ID') ?></th>
-                    <th><?= __('Farmer Name') ?></th>                    
-                    <th><?= __('Mobile No') ?></th>                                        
+                    <th><?= __('Farmer Name') ?></th>
+                    <th><?= __('Mobile No') ?></th>
                     <th><?= __('District Name') ?></th>
-                    <th><?= __('Upazilla Name') ?></th>                    
+                    <th><?= __('Upazilla Name') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,10 +23,10 @@
                 <?php foreach ($farmer as $farmer): ?>
                 <tr>
                     <td><?= $this->Number->format($farmer->FarmerID) ?></td>
-                    <td><?= h($farmer->FarmerName) ?></td>                    
-                    <td><?= h($farmer->FarMob) ?></td>                    
+                    <td><?= h($farmer->FarmerName) ?></td>
+                    <td><?= h($farmer->FarMob) ?></td>
                     <td><?= h($farmer->district->DistrictName) ?></td>
-                    <td><?= h($farmer->upazilla->UpazillaName) ?></td>                      
+                    <td><?= h($farmer->upazilla->UpazillaName) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $farmer->OID]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $farmer->OID]) ?>
